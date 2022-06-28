@@ -6,8 +6,14 @@
 
   - name: install HTTPD package
     yum:
+
       name: httpd
+      state: latest
 
   - name: add PHP support for apache
     yum:
+
       name: php
+      state: latest
+
+
