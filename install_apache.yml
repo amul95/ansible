@@ -1,14 +1,16 @@
 --- 
 
-
-
 - hosts: all
   tasks:
 
-
+  - name: update repository index
+    yum:
+      update_cache: yes
 
   - name: install HTTPD package
-
     yum:
-
       name: httpd
+
+  - name: add PHP support for apache
+    yum:
+      name: php
