@@ -1,0 +1,13 @@
+--- 
+
+- hosts: all
+  tasks:
+
+
+  - name: install HTTPD package
+    yum:
+      name: httpd
+
+  - name: add PHP support for apache
+    yum:
+      name: php
