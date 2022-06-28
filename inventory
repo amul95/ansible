@@ -1,6 +1,10 @@
 # Ubuntu Servers name and IP_address
 
-10.0.137.60	# Server_1
-10.0.137.165    # Server_2
-10.0.137.25     # Server_3
+ 10.177.0.3 # CentOS_Server_A
+ 10.177.0.4 # CentOS_Server_B
+ 10.177.0.5 # Ubuntu_Server_C
+ 10.177.0.6 # Ubuntu_Server_D
+ 
+ 
+ 
 
