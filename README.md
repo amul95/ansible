@@ -205,4 +205,21 @@ name : jo bhi pakcage ka naam hai woh daalo
 
 toh hua ye ki 'yum install htppd' ye command hum sb me bari baari dalte woh ab ansible se hi sb me ek saath push hoga aur hume output milega task me ok krke ab bahdte hai aage 
 
+# PHP
+
+> ab hum PHP install krenge uske liye bhi mene jo playbook create kia tha usme mene bas command add kr dia yum php bas 
+> install ho jaane ke baad hum jis bhi servers humne PHP install kr dia toh wnha hume jaakr ye command daalna 
+	
+server me jaakr terminal me hume ek file create krni hai 
+
+save krne ka location hai : cd /var/www/html/ me jakar nano info.php krke text-editor me 
+	<?php
+	phpinfo();
+	?>
+ye wala likh kar save kr dena hai bas fir hume ansible wale host pr jaakr sidha browser me http://serverip/info,php enter krna hai 
+
+tb hume php ka page dekhenge...
+	
+	
+
 
