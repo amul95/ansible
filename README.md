@@ -1,106 +1,63 @@
-# ansible
+# Generate SSH-Key...
 
-Starting Again...
+	-- ssh-keygen -t ed25519 -C "Amul default"
+	
+> isme mene passwd set kia agr me chahu oth blank chorr skta hoon jise ye passwd protected key nhi hoga.
+> store hui key is path par milegi : /root/.ssh/ me id_25519 ke naam se hoga 
 
-First step : hum ssh key generate kregne aur usse check krenge ki humare pass store ho chuki hai ki nhi 
+	-- ssh-keygen -t ed25519 -C "Ansible"
+	
+> isme mene passwd nhi set kiaa kyun ki jab bhi server se hum connect honge hum key ke through toh
+  direct connect honge hume baar baar passwd nhi dena padega
 
-ssh-keygen -t ed25519 -C "Amul default"
+# Copy SSH-Key's to all Servers
+> humne jo bhi key create ki hai woh hum humare sare server ko copy karayenge aur check krenge ki woh wnha copy ho chuki hai yaa nhi 
 
-fir hum usse check krenge ki ho gyi yaa nhi 
-
-la -ls .ssh
-
-fir hume aesa output dikhega 
-
-admin@Docker:~$ la -ls .ssh
-total 12
-4 -rw------- 1 admin admin 444 Jun 13 11:09 id_ed25519         <<<< dekho key ho chuki hai genrate
-4 -rw-r--r-- 1 admin admin  94 Jun 13 11:09 id_ed25519.pub
-4 -rw-r--r-- 1 admin admin 666 Jun 13 11:32 known_hosts
-
-
-ab hum yahi key jitne bhi server hai sb me copy kara denge taaki baar baar hume password naa dalna pade unse connect krne
-ke liye 
-
-
-Copy command : last me server ke ip change honge jitne bhi server hai sb ke ip dalo aur copy kro
-
-"ssh-copy-id -i ~/.ssh/id_ed25519.pub 10.0.137.60"
-"ssh-copy-id -i ~/.ssh/id_ed25519.pub 10.177.0.4"
-"ssh-copy-id -i ~/.ssh/id_ed25519.pub 10.177.0.5"
+	ssh-copy-id -i root/.ssh/id_ed25519.pub 0.0.0.0
 
 
 
+# Connect Server's through ansible key
+ 	
+	ssh -i ~/.ssh/ansible 10.177.0.5
 
-server side :  <<< jo bhi humne copy kia hai ssh key woh copy ho chuki hai ya nhi 
+# alias ssha
 
+> hume .bashrc me jaakr niche wala command type krke save krna hai aur check krna hai
 
-admin@Ubuntu Server 3:/home$ cd admin/.ssh/
-admin@Ubuntu Server 3:~/.ssh$ ls
-authorized_keys
-admin@Ubuntu Server 3:~/.ssh$ cat authorized_keys
-output :
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ14+NL9Hoa3enAscts5nSMwT5/H8So6TghNb5bhFvIV Amul default
+nano .bashrc  
 
-server side in root : <<< sidha ye bhi path daal doge toh pata chal jaayega
-root@Ubuntu Server 3:/# cat home/admin/.ssh/authorized_keys
-output :
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ14+NL9Hoa3enAscts5nSMwT5/H8So6TghNb5bhFvIV Amul default
+	# ssh agent
+	  alias ssha='eval $(ssh-agent) && ssh-add'
+	  
+> Fir hume check krenge ki woh type kia hua woh sahi se work kr rha hai ki nhi  
 
----------------------------------------------------------------------------------------------------------------------------------------------------------
+**Hume alias ssha type krna hai** 	
+> toh ye output milega...
 
-Me ansible ke liye wpis ssh key genrate krunga aur ussi keys se sirf apne server handle krunga toh me alaga se banakar wapis sb copy krunga aur fir 
+	alias ssha='eval $(ssh-agent) && ssh-add'
+         
+**fir hume sirf ssha type krna hai toh aesa output aayega**
 
-"ssh -i ~/.ssh/ansible 10.177.0.5" <<< aese server ke ip's dal kr connect krunga aur password bhi nhi puchega aesa isliye jab mene key genrat kia toh 
-no passpharse kia tha means mene empty chod krr enter kr dia mtlb koi password ki zarurt nhi
+	[root@Ansible_WS ansible]# ssha
+	Agent pid 3382
+	Enter passphrase for /root/.ssh/id_ed25519: 
+	Identity added: /root/.ssh/id_ed25519 (CentOS)
 
-genrate aur kese copy krne hai woh same step hai isliye wese hi kro aur baki sb me server me check kro ki woh keys aa chuki hai ki nhi wo hume kese pata
-chlega woh same step hai upr wala dekho janha hum authorie_keys check kie the usme pehle sirf ek key tha amul default wala abhi add ho chuka hoga ansible
-wala.
+# Git Clone
+> ab hume github use krna hai toh uske pehle github me account banao aur fir usme ek repository banao uske bad hume github ke settings me jana hai aur ssh keys me jaakr jo bhi humne ssh key generate ki hai ansible wale host pr usse copy krke ynha save kr denge fir hum dekhenge ki jo b humne repository create kia hai usme code krke ek box hoga use click kroge toh jo link hoga usse copy krna hai fir usse humare terminal likhna hai 
 
-
-
-Ye hume ansible side krna hai janha humare desktop hai ubuntu ka 
-
-
-alias ssha='eval $(ssh-agent) && ssh-add'
-ye jese hi command enter kroge aapko password pucheg ka admin ka dalna mene admin ka password admin dala hai kyun ki 
-mene wese hi set kia fir aap wapis alias ssha command daaloge toh eval wla pura command shw hoga jesa fir 
+	 git clone git@github.com:amul95/ansible.git
 
 
-sudo nano .bashrc <<<< ye open kro ubuntu host pr aur usme 
-# ssh agent
-alias ssha='eval $(ssh-agent) && ssh-add'
-
-krke save kr do aur 
-
-aur wapis check krna ki....
-
-admin@Docker:/home$ alias ssha			<<< ye likhe ne se 
-alias ssha='eval $(ssh-agent) && ssh-add'	<<< ye output aa rha hai ya nhi
-
-
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alais l='ls -CF
-
-
-after create git repositary we ahed for ssh in setting then go to code in github using link git clone after that we create usernam aur user email
-
-admin@Ansible_workStation:~$ git clone git@github.com:amul95/ansible.git
-admin@Ansible_workStation:~$ cd ansible/
-admin@Ansible_workStation:~/ansible$ ls
-README.md
-admin@Ansible_workStation:~/ansible$ git config --global user.name "Amul Raval" 
-admin@Ansible_workStation:~/ansible$ git config --global user.email "ravalamul@gmail.com"
-admin@Ansible_workStation:~/ansible$ cat ~/.gitconfig 
-[user]
+	admin@Ansible_workStation:~/ansible$ git config --global user.name "Amul Raval" 
+	admin@Ansible_workStation:~/ansible$ git config --global user.email "ravalamul@gmail.com"
+	admin@Ansible_workStation:~/ansible$ cat ~/.gitconfig 
+	[user]
 	name = Amul Raval
 	email = ravalamul@gmail.com
 
-
+> Fir ab ek ke bad ek file add krenge aur dekhenge ki woh github me kese changes hote hai 
 
 git add README.md 
 git commit -m "updated readme file"
