@@ -1,19 +1,31 @@
 --- 
 
 - hosts: all
+  become: true
   tasks:
-
 
   - name: install HTTPD package
     yum:
-
       name: httpd
       state: latest
-
+    when: ansible_distribution == "CentOS"
+    
   - name: add PHP support for apache
     yum:
-
       name: php
       state: latest
+    when: ansible_distribution == "CentOS"
+  
+  - name: install HTTPD package
+    apt:
+      name: apache2
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  - name: add PHP support for apache
+    apt:
+      name: libapache2-mod-php
+      state: latest
+    when: ansible_distribution == "Ubuntu"
 
 
