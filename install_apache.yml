@@ -6,7 +6,7 @@
 
   - name: install TMUX package
     yum:
-      name: httpd
+      name: tmux    #yes me ynha change krna bhul gya tha us wjh se ynha pr jo name tha httpd woh package install ho gya glti se pr koi nhi ab theek hai 
       state: latest
     when: ansible_distribution == "CentOS"
     
