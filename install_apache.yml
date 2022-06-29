@@ -1,6 +1,7 @@
 --- 
 
 - hosts: all
+  become: yes
   tasks:
 
   - name: install HTTPD package
@@ -14,6 +15,11 @@
       name: php
       state: absent
     when: ansible_distribution == "CentOS"
+
+ - name: update repository index
+    apt:
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu" 
   
   - name: install apache2 package
     apt:
