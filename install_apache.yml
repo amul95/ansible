@@ -5,13 +5,13 @@
   tasks:
 
   - name: install HTTPD package
-    yum:
+    dnf:
       name: httpd
       state: latest
     when: ansible_distribution == "CentOS"
     
   - name: add PHP support for apache
-    yum:
+    dnf:
       name: php
       state: latest
     when: ansible_distribution == "CentOS"
