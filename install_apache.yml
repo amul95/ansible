@@ -6,17 +6,14 @@
 
   - name: install TMUX package
     yum:
-      name: tmux    #yes me ynha change krna bhul gya tha us wjh se ynha pr jo name tha httpd woh package install ho gya glti se pr koi nhi ab theek hai 
-      state: latest
+      name: tmux  
+      state: absent  # cent os delete ho jayega ye tmux 
     when: ansible_distribution == "CentOS"
     
   - name: install TMUX package
     apt:
       name: tmux
-      state: latest
+      state: absent  # as u see ubuntu me bhi delete ho jaayega
     when: ansible_distribution == "Ubuntu"
-
-# mene do bar state me latest likha mtlb jo tmux installed hoga woh latest hoga ye mltb hota hai state ka aur centos me dekhiae yum use kia ek 
-# aur ubuntu me apt use kiaa ab isse play krke dekhenge hum ki woh work hota hai yaa nhi 
-
+# baaki kuch bhi changes krne ki zarurt nhi hai 
         
