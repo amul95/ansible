@@ -7,13 +7,12 @@
   - name: install TMUX package
     yum:
       name: tmux  
-      state: absent  # cent os delete ho jayega ye tmux 
+      state: latest
     when: ansible_distribution == "CentOS"
     
   - name: install TMUX package
     apt:
       name: tmux
-      state: absent  # as u see ubuntu me bhi delete ho jaayega
+      state: latest
     when: ansible_distribution == "Ubuntu"
-# baaki kuch bhi changes krne ki zarurt nhi hai 
-        
+
