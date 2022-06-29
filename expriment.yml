@@ -5,26 +5,22 @@
 
   - name: Install tmux or apache2 for CentOS
     yum:
-      
-      name: 
-      
+      name:
+        
         - tmux  
         - httpd
       
       state: present
     
-    when: ansible_distribution == "CentOS"
+      when: ansible_distribution == "CentOS"
  
   - name: Install tmux or apache2 for Ubuntu
     apt:
-    
-    name: 
-    
+      name: 
         - tmux
         - apache2
+      state: present
     
-    state: present
-    
-    when: ansible_distribution == "Ubuntu"
+      when: ansible_distribution == "Ubuntu"
  
   
