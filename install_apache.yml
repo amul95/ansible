@@ -6,25 +6,25 @@
   - name: install HTTPD package
     yum:
       name: httpd
-      state: latest
+      state: absent
     when: ansible_distribution == "CentOS"
     
   - name: add PHP support for apache
     yum:
       name: php
-      state: latest
+      state: absent
     when: ansible_distribution == "CentOS"
   
   - name: install apache2 package
     apt:
       name: apache2
-      state: latest
+      state: absent
     when: ansible_distribution == "Ubuntu"
 
   - name: add libapache2-mod-php for apache
     apt:
       name: libapache2-mod-php
-      state: latest
+      state: absent
     when: ansible_distribution == "Ubuntu"
 
 
