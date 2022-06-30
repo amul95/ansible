@@ -3,26 +3,11 @@
 - hosts: all
   tasks: 
 
-  - name: Install tmux or apache2 for CentOS
-    yum:
+  - name: Install tmux in both servers
+    package:
       name:
-        
-        - tmux  
-        - httpd
-      
-      state: absent
-    
-    when: ansible_distribution == "CentOS"
- 
-  - name: Install tmux or apache2 for Ubuntu
-    apt:
-      name: 
-      
-        - tmux
-        - apache2
-      
-      state: absent 
-    
-    when: ansible_distribution == "Ubuntu"
-  
+        - "{{ tmux_package }}"
+      state: latest
+      update_cache: yes
+
   
