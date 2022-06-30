@@ -75,8 +75,8 @@ nano .bashrc
 > ye command jab hum github site pr kuch changes kre toh woh hum apne local site pr chahhiye toh hum ye krenge 
 
 # Create inventory File 
-> isme me ab apne servers ke ip daaluunga taaki sb ek sb ek jgh store ho aur me jab chahu in sb pr koi command chalana toh kr sku
 
+> isme me ab apne servers ke ip daaluunga taaki sb ek sb ek jgh store ho aur me jab chahu in sb pr koi command chalana toh kr sku			
 	ansible all --key-file ~/.ssh/ansible -i inventory -m ping
 
 > is comaand se hum apne saare server ke ip ko ping kr skte hai 
