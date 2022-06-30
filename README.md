@@ -22,7 +22,8 @@
 	ssh -i ~/.ssh/ansible 10.177.0.5
 
 # alias ssha
-
+> Hum alias ssha isliye use kr rhe hai kyun ki jab hum git se push n pull krenge toh baar baar hume authentication naa krna pade isliye
+> ek baar command daalne se hmse passwd bhi jayega aur hme de dena fir woh automatic fetch kr lega 
 > hume .bashrc me jaakr niche wala command type krke save krna hai aur check krna hai
 
 nano .bashrc  
@@ -47,152 +48,109 @@ nano .bashrc
 # Git Clone
 > ab hume github use krna hai toh uske pehle github me account banao aur fir usme ek repository banao uske bad hume github ke settings me jana hai aur ssh keys me jaakr jo bhi humne ssh key generate ki hai ansible wale host pr usse copy krke ynha save kr denge fir hum dekhenge ki jo b humne repository create kia hai usme code krke ek box hoga use click kroge toh jo link hoga usse copy krna hai fir usse humare terminal likhna hai 
 
-	 git clone git@github.com:amul95/ansible.git
-
-
-	admin@Ansible_workStation:~/ansible$ git config --global user.name "Amul Raval" 
-	admin@Ansible_workStation:~/ansible$ git config --global user.email "ravalamul@gmail.com"
-	admin@Ansible_workStation:~/ansible$ cat ~/.gitconfig 
-	[user]
-	name = Amul Raval
-	email = ravalamul@gmail.com
+		admin@Ansible_workStation:~/ git clone git@github.com:amul95/ansible.git
+		admin@Ansible_workStation:~/ cd ansible
+		admin@Ansible_workStation:~/ansible$ git config --global user.name "Amul Raval" 
+		admin@Ansible_workStation:~/ansible$ git config --global user.email "ravalamul@gmail.com"
+		admin@Ansible_workStation:~/ansible$ cat ~/.gitconfig 
+		[user]
+		name = Amul Raval
+		email = ravalamul@gmail.com
 
 > Fir ab ek ke bad ek file add krenge aur dekhenge ki woh github me kese changes hote hai 
 
-git add README.md 
-git commit -m "updated readme file"
-git push origin main
+# Git Push & Pull
 
-nano README.md   >>>> me aama changes kryu kai pn lahyu
-git add README.md >>>> add karai git ma  
-git status      >>>> je pn chnages kryu ae green ma modified aavse 
-git commit -m "updated readme file" >>> commit kryu
-git push origin main >>> aa command push krta j tya git ma changes thai jase 
+> mann lo mene mere ansible host mtlb ubuntu me yaa centOS me kuch changes kia chahe ReadMe file ho yaa mene jo inventory file banaya
+> toh mene usme jo bhi changes kie me chahra hoon woh mere github me wnha changes hokr save rhe taki muje jab bhi zarurat pde me wapis
+> wnha pull kr ke files le sku aur mene jo apne local side se kuch changes kie woh me push krke github me save kr sku 
 
+	git add README.md 
+> jis file me humne changes kia us file ka name use krna hai git add commad ke aage
+	git commit -m "updated readme file"
+> fir hume commit krna hai uspr ki commit krna hai kuch uspr comment de do ki taaki dhyaan rhe 
+	git push origin main
+> fir ye last hai git push mtlb jo bhi mene changes kia woh wnha github ki website pr ho jaaye 
+	git pull
+> ye command jab hum github site pr kuch changes kre toh woh hum apne local site pr chahhiye toh hum ye krenge 
 
-### me mara Ip address store krya inventory file ma 
+# Create inventory File 
+> isme me ab apne servers ke ip daaluunga taaki sb ek sb ek jgh store ho aur me jab chahu in sb pr koi command chalana toh kr sku
+	ansible all --key-file ~/.ssh/ansible -i inventory -m ping
+> is comaand se hum apne saare server ke ip ko ping kr skte hai 
 
-nano inventory  >>> create kri and ema type krya server na ip's
-git add inventory >> have git ma add kro
-git commit -m "add inventory file"   >>> commit kro 
-git push origin main >>> push kryu 
+# Create Ansible Configuration File 
 
-and check kryu me git ni site pr aavi gyu tu 	
+	nano ansible.cfg
+	
 
-ansible all --key-file ~/.ssh/ansible -i inventory -m ping
+	[defaults]
+	inventory = inventory
+	private_key_file = ~/.ssh/ansible
 
-aa command lakhine ne aapda inventory file ma jetla pn server ip che ae badhne ping jase ane suceess lakheli aavse command dhyan thi jovo 
+> fir hum sirf ansible all -m ping itne hi short command se ping kr paayenge 
 
+	ansible all -m ping
 
+	ansible all --list-host
 
+> hume git push bhi krna padega taaki github pr save ho jaaye humara file
 
-nano ansible.cfg
-
-[defaults]
-inventory = inventory
-private_key_file = ~/.ssh/ansible
-
-
-
-ctrl+O enter ctrl+X
-
-ansible all -m ping
-ansible all --list-host
-
-git add ansible.cfg 
-git commit -m "new file added"
-git push origin main
-
+	git add ansible.cfg 
+	git commit -m "new file added"
+	git push origin main
 
 all set 
 
-ansible all -m  gather_facts
+# Gather informations From Servers
 
- 
-ansible all -m  gather_facts --limit server ip address 
+	ansible all -m  gather_facts
+> ye all servers ke liye ek saath sb server ka info milega
 
-* je pn me store krya che ae badha IP addreess step by step nakho 
+	ansible all -m  gather_facts --limit <server ip address> 
+> ye perticular server ka information gather krna chahte hai 
 
+# How to push 'sudo apt-get update' 
 
--- Server static ip address 	
+	ansible all -m apt -a update_cache=true
 
-server_1
-ifconfig eth1 10.0.137.60/24
-route add default gw 10.0.137.1
+> ye hua nornam apt-get update pr ye work nhi karega kyun ki uske liye hume sudo lagna pdega tb hi work krega pr hum normal us system >  
+> sudo apt-get update likhene toh work kerega but hum ansible se kese krvayenge 
 
-server_2
-ifconfig eth1 10.0.137.165/24
-route add default gw 10.0.137.1
+	ansible all -m apt -a update_cache=true --become --ask-become-pass 
 
-server_3
-ifconfig eth1 10.0.137.25/24	
-route add default gw 10.0.137.1
+> hm jab bhi user mode me hota hai aur hume agar kuch install krna hai toh sudo apt-get install <package name> toh hume password 
+> puchega jo bhi root ka password hoga toh bas issliye become-pass ka mtlb woh hi hai 
 
+# How install package from Ansible Host in UBUNTU 
 
+> name ke aage mene package name dala ki ye install krna hai muje fir ye install ho jayega 
 
--- push apt-get update thorugh ubuntu desktop means ansible host 
+	ansible all -m apt -a name=vim-nox --become --ask-become-pass 
 
+# How install package from Ansible Host in CentOS
 
-ansible all -m apt -a update_cache=true
-# ye hua nornam apt-get update pr ye work nhi karega kyun ki uske liye hume sudo lagna pdega tb hi work krega pr hum normal us system sudo apt-get update likhene toh work kerega but hum ansible se kese krvayenge 
+> centOS me apt nhi chlega usme yum chalta hai toh bas woh change krna padega aur haan usme sudo do yaaa naa do woh frk nhi pdega
 
-ansible all -m apt -a update_cache=true --become --ask-become-pass
+	ansible all -m yum -a name=tmux
 
-# sudo apt-get update ye hum kuch is tarh type krenge ansible me 
+# Creating Play-Books
 
-ab hum is command ke dep me jaate hai 
+> muje ab maan lo apne saaare servers pr apache server install krna hai toh me kya krunga ek tarika hai server pr jaakr baari bari se sb > command likhu yum install 'pkg name' yaa fir usse ansible host me likhu kuch is tarike se jo me run kru toh sb me ek sath install ho 
+> jaaye yes aesa mumkin hai playbook ke zariae 
 
+Step : 1 - Create nano file & save .yml extenstion
 
-ansible all -m 
-# iska mtlb ki mere ansible me folder me jo bhi files hai like ansible.cfg jisme ssh key ka path hai aur inventory me jo ip hai server ke woh bhi hai toh un sb ke saath muje kyaa krnna hai ping krna hai toh me ansible all -m ping aese likhunga toh jo bhi server ip hone un sb ko ping hoga 
+	nano install_apache.yml
 
-apt
-# ye hum use krte hai apt-get update yaa koi apt package install krne ke liye toh hum apt command ke zariae install krte hai toh hume hum baaki server me apt-get update karvana hai toh hum ansible all -m apt type krenge aur bdhte hai aage
+Step : 2 - usme niche wali sari line copy kr do 
 
--a update_cache=true
-
-# fir -a use kia that menas = argument aur uske baad update_cache=true likha ynha update_cache means hua apt-get update jo by defult of hota hai means false toh hum ynha true krenge taaki ye command work ho skte aur ye sudo ka similar hai ansible me 
-
---become --ask-become-pass
-
-# ab aata hai become aur become pass means password ki aap jo krna chahte hai servers pr usme aapke pass sudo yaa sudo ka password hai toh hume jese hi ye last me likhenge toh hmse sudo ka passwd pucha jayega fir humare ye command work krega aur jitne bhi server hai sb me sudo apt-get update ho jaayega 
-
-*************************************************************************************
-
-Ab me chahta hoon ki mene jese package install krta hoon like 
-apt-get install <package name> toh ye kese krunga ansible host side se sb server pr ab woh sikhenge 
-
-
-ansible all -m apt -a name=vim-nox --become --ask-become-pass 
-
-Centos Linux 
-
-isme hume apt ki jagh use krna hai yum keyword example deta hoon me jese ki hum apt-get update likhte hai ubuntu me toh isme hume ye likhna hai cent os me yum update toh start ho jayega toh ye is tarh se kaam krta hai 
-
-aur haan isme hume become password dene ka zarrut nhi hota hai kyun ki sudo jesa kuch nhi aata hai cent os me 
-
-ansible all -m yum -a name=tmux
-
-jese hi ye command type krenge humare server ip wale me sb tmux install ho jayega 
-
-ab badhte hai playbook ki aur 
-
--- Playbooks
-
-muje ab maan lo apne saaare servers pr apache server install krna hai toh me kya krunga ek tarika hai server pr jaakr baari bari se sb command likhu yum install 'pkg name' yaa fir usse ansible host me likhu kuch is tarike se jo me run kru toh sb me ek sath install ho jaaye yes aesa mumkin hai playbook ke zariae 
-
-
-ab step 1 sbse phle hum ansible host me humara jo ansible wala directory hai usme jayenge aur usme ab ek nano file create krenge 
-
-step2 - nano install_apache.yml
-toh ek text editor open hoga as u all know 
-
----
-- hosts: all
-  tasks:
-  - name: install apache2 package
-    yum:
-      name: httpd 
+	---
+	- hosts: all
+	tasks:
+	- name: install apache2 package
+		yum:
+		name: httpd 
 
 itna likh kar hume Ctrl+O uske Ctrl+X bahar nikl jao 
 
@@ -213,9 +171,9 @@ toh hua ye ki 'yum install htppd' ye command hum sb me bari baari dalte woh ab a
 server me jaakr terminal me hume ek file create krni hai 
 
 save krne ka location hai : cd /var/www/html/ me jakar nano info.php krke text-editor me 
-	<?php
-	phpinfo();
-	?>
+		<?php
+		phpinfo();
+		?>
 ye wala likh kar save kr dena hai bas fir hume ansible wale host pr jaakr sidha browser me http://serverip/info,php enter krna hai 
 
 tb hume php ka page dekhenge...
