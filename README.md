@@ -66,17 +66,25 @@ nano .bashrc
 > wnha pull kr ke files le sku aur mene jo apne local side se kuch changes kie woh me push krke github me save kr sku 
 
 	git add README.md 
+
 > jis file me humne changes kia us file ka name use krna hai git add commad ke aage
+
 	git commit -m "updated readme file"
+
 > fir hume commit krna hai uspr ki commit krna hai kuch uspr comment de do ki taaki dhyaan rhe 
+
 	git push origin main
+
 > fir ye last hai git push mtlb jo bhi mene changes kia woh wnha github ki website pr ho jaaye 
+
 	git pull
+
 > ye command jab hum github site pr kuch changes kre toh woh hum apne local site pr chahhiye toh hum ye krenge 
 
 # Create inventory File 
 
 > isme me ab apne servers ke ip daaluunga taaki sb ek sb ek jgh store ho aur me jab chahu in sb pr koi command chalana toh kr sku			
+	
 	ansible all --key-file ~/.ssh/ansible -i inventory -m ping
 
 > is comaand se hum apne saare server ke ip ko ping kr skte hai 
@@ -102,14 +110,15 @@ nano .bashrc
 	git commit -m "new file added"
 	git push origin main
 
-all set 
 
 # Gather informations From Servers
 
 	ansible all -m  gather_facts
+	
 > ye all servers ke liye ek saath sb server ka info milega
 
 	ansible all -m  gather_facts --limit <server ip address> 
+
 > ye perticular server ka information gather krna chahte hai 
 
 # How to push 'sudo apt-get update' 
