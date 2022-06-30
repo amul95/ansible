@@ -1,12 +1,14 @@
 --- 
 
 - hosts: all
+  become: true
   tasks: 
 
   - name: Install tmux in both servers
     package:
       name:
         - "{{ tmux_package }}"
+        - "{{  }}"
       state: present
       update_cache: yes
 
