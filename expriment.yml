@@ -7,7 +7,7 @@
     package:
       name:
         - "{{ tmux_package }}"
-      state: absent
+      state: present
       update_cache: yes
 
   
