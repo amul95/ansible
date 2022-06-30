@@ -8,7 +8,7 @@
     package:
       name:
         - "{{ tmux_package }}"
-        - "{{  }}"
+        - "{{ apache2_package }}"
       state: present
       update_cache: yes
 
