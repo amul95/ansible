@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 # Ubuntu Servers name and IP_address
 
  10.177.0.3 tmux_package = tmux    
  10.177.0.4 tmux_package = tmux   
  10.177.0.5 tmux_package = tmux   
  10.177.0.6 tmux_package = tmux    # Ubuntu_Server_D
+=======
+10.177.0.3 tmux_package=tmux  
+10.177.0.4 tmux_package=tmux    
+10.177.0.5 tmux_package=tmux   
+10.177.0.6 tmux_package=tmux  
+>>>>>>> 65c9d4a8bea188fcff7b375eaedd8c82b53d7f29
  
  
  
