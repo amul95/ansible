@@ -1,8 +1,8 @@
 # Ubuntu Servers name and IP_address
 
- 10.177.0.3 tmux_package = tmux    # CentOS_Server_A
- 10.177.0.4 tmux_package = tmux    # CentOS_Server_B
- 10.177.0.5 tmux_package = tmux    # Ubuntu_Server_C
+ 10.177.0.3 tmux_package = tmux    
+ 10.177.0.4 tmux_package = tmux   
+ 10.177.0.5 tmux_package = tmux   
  10.177.0.6 tmux_package = tmux    # Ubuntu_Server_D
  
  
