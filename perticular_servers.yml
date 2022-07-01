@@ -15,3 +15,12 @@
       upgrade: dist
       update_cache: yes
     when: ansible_distribution == "Ubuntu"
+
+  - name: install mariadb in "Ubuntu"
+    when: ansible_distribution =="Ubuntu"
+    package:
+     name:
+        - mariadb-server
+     state: present
+     
+    
