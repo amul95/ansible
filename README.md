@@ -81,13 +81,24 @@ nano .bashrc
 
 > ye command jab hum github site pr kuch changes kre toh woh hum apne local site pr chahhiye toh hum ye krenge 
 
-# Create inventory File 
+# Create Inventory File 
 
-> isme me ab apne servers ke ip daaluunga taaki sb ek sb ek jgh store ho aur me jab chahu in sb pr koi command chalana toh kr sku			
+> me ab inventory file create kr rha hoon jisme mere saare server ke IP address store krunga taaki me jab chahu tb use use kr sku 
+
+	nano inventory
+	0.0.0.0 	# jo bhi server ip hai store krke uske samne comment kr do taaki sb clear rhe like this
+	0.0.0.0 	# CentOS Server
+	0.0.0.0 	# Ubuntu Server
+	0.0.0.0		# CentOS server
+> ab me save kr doonga aur fir usse hum git me push kr denge taaki woh store ho jaye apne github pr 
+	
+	git add inventory
+	git commit -m "create inventor file"
+	git push origin main
+	
+> Fir me us inventory file ko check krunga ki ping command se taaki jitne bhi uske ander IP hai un sb ko ek saath ping jaayega 		
 	
 	ansible all --key-file ~/.ssh/ansible -i inventory -m ping
-
-> is comaand se hum apne saare server ke ip ko ping kr skte hai 
 
 # Create Ansible Configuration File 
 
