@@ -59,12 +59,18 @@ nano .bashrc
 
 > Fir ab ek ke bad ek file add krenge aur dekhenge ki woh github me kese changes hote hai 
 
-# Git Push & Pull
+# README.md Pull frome Git
 
-> mann lo mene mere ansible host mtlb ubuntu me yaa centOS me kuch changes kia chahe ReadMe file ho yaa mene jo inventory file banaya
-> toh mene usme jo bhi changes kie me chahra hoon woh mere github me wnha changes hokr save rhe taki muje jab bhi zarurat pde me wapis
-> wnha pull kr ke files le sku aur mene jo apne local side se kuch changes kie woh me push krke github me save kr sku 
-
+> me jese hi git clone use karunga mere github me jo meri banayi hui repository hogi woh mere local linux me store hogi toh mene kyaa kie pehle ji github me 
+> Readme.md file create kia example ke liye taaki jab me local pr repository add kru toh pata chle ki kyaa readme file bhi aa gyi mere local pr agar aa gyi
+> that means ki github se sahi se work kr rha hai ab me khud kuch changes krunga Readme file me aur woh changes automatic honge github pr 
+	
+	nano README.md
+	
+	# Hello this is my first repository on GitHub
+	
+> fir me save krunga Readme wali file uske baad mene jo bhi changes kie muje woh mere github pr chahiye isliye me usse ab push krunga locak se github pr 
+	
 	git add README.md 
 
 > jis file me humne changes kia us file ka name use krna hai git add commad ke aage
@@ -75,11 +81,7 @@ nano .bashrc
 
 	git push origin main
 
-> fir ye last hai git push mtlb jo bhi mene changes kia woh wnha github ki website pr ho jaaye 
-
-	git pull
-
-> ye command jab hum github site pr kuch changes kre toh woh hum apne local site pr chahhiye toh hum ye krenge 
+> aur last me hume git push krna hai taaki woh finally github pr pahuche 
 
 # Create Inventory File 
 
