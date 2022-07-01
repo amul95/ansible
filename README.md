@@ -65,8 +65,8 @@ nano .bashrc
 > Readme.md file create kia example ke liye taaki jab me local pr repository add kru toh pata chle ki kyaa readme file bhi aa gyi mere local pr agar aa gyi
 > that means ki github se sahi se work kr rha hai ab me khud kuch changes krunga Readme file me aur woh changes automatic honge github pr 
 	
-	nano README.md
-	
+nano README.md
+		
 	# Hello this is my first repository on GitHub
 	
 > fir me save krunga Readme wali file uske baad mene jo bhi changes kie muje woh mere github pr chahiye isliye me usse ab push krunga locak se github pr 
@@ -87,11 +87,13 @@ nano .bashrc
 
 > me ab inventory file create kr rha hoon jisme mere saare server ke IP address store krunga taaki me jab chahu tb use use kr sku 
 
-	nano inventory
+nano inventory
+
 	0.0.0.0 	# jo bhi server ip hai store krke uske samne comment kr do taaki sb clear rhe like this
 	0.0.0.0 	# CentOS Server
 	0.0.0.0 	# Ubuntu Server
 	0.0.0.0		# CentOS server
+
 > ab me save kr doonga aur fir usse hum git me push kr denge taaki woh store ho jaye apne github pr 
 	
 	git add inventory
@@ -104,9 +106,8 @@ nano .bashrc
 
 # Create Ansible Configuration File 
 
-	nano ansible.cfg
+nano ansible.cfg
 	
-
 	[defaults]
 	inventory = inventory
 	private_key_file = ~/.ssh/ansible
@@ -149,9 +150,9 @@ nano .bashrc
 # How install package from Ansible Host in UBUNTU 
 
 > name ke aage mene package name dala ki ye install krna hai muje fir ye install ho jayega 
-
-	ansible all -m apt -a name=vim-nox --become --ask-become-pass 
-
+	
+	ansible all -m apt -a name=tmux --become --ask-become-pass 
+	
 # How install package from Ansible Host in CentOS
 
 > centOS me apt nhi chlega usme yum chalta hai toh bas woh change krna padega aur haan usme sudo do yaaa naa do woh frk nhi pdega
@@ -171,10 +172,10 @@ Step : 2 - usme niche wali sari line copy kr do
 
 	---
 	- hosts: all
-	tasks:
+	  tasks:
 	- name: install apache2 package
-		yum:
-		name: httpd 
+	  yum:			
+	    name: httpd 
 
 itna likh kar hume Ctrl+O uske Ctrl+X bahar nikl jao 
 
@@ -195,9 +196,11 @@ toh hua ye ki 'yum install htppd' ye command hum sb me bari baari dalte woh ab a
 server me jaakr terminal me hume ek file create krni hai 
 
 save krne ka location hai : cd /var/www/html/ me jakar nano info.php krke text-editor me 
+	
 		<?php
 		phpinfo();
 		?>
+	
 ye wala likh kar save kr dena hai bas fir hume ansible wale host pr jaakr sidha browser me http://serverip/info,php enter krna hai 
 
 tb hume php ka page dekhenge...
