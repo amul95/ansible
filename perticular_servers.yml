@@ -14,11 +14,15 @@
       update_cache: yes
     when: ansible_distribution == "Ubuntu"
 
+- hosts: ftp_server
+  become: true
+  tasks:
+  
   - name: install mariadb in "Ubuntu"
     when: ansible_distribution =="Ubuntu"
     package:
      name:
         - mariadb-server
-     state: present
+     state: absent
 
     
