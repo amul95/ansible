@@ -6,13 +6,11 @@
 
   - name: install updates (CentOS)
     yum:
-      update only: yes
       update_cache: yes
     when: ansible_distribution == "CentOS"
 
   - name: install updates (Ubuntu)
     apt:
-      upgrade: dist
       update_cache: yes
     when: ansible_distribution == "Ubuntu"
 
@@ -22,5 +20,5 @@
      name:
         - mariadb-server
      state: present
-     
+
     
