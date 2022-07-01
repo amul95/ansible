@@ -1,0 +1,17 @@
+--- 
+- hosts: web_servers  
+  tasks: 
+
+  - name: http & php installed CentOS  
+    when: ansible_distribution == "CentOS"
+    package:
+        name:
+           - tmux
+        state: present
+
+  - name: apache2 & libapache installed Ubuntu
+    when: ansible_distribution == "Ubuntu"
+    package:
+        name:
+           - tmux
+        state: present

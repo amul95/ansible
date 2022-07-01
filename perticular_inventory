@@ -1,0 +1,10 @@
+[web_servers]
+10.177.0.3
+10.177.0.6
+
+[ftp_server]
+10.177.0.5 
+
+[mailexchange_server]
+10.177.0.4 
+
