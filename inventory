@@ -1,10 +1,5 @@
-# Ubuntu Servers name and IP_address
+# CentOS & Ubuntu Server IP_addresses 
 10.177.0.3 tmux_package=tmux apache2_package=httpd
 10.177.0.4 tmux_package=tmux apache2_package=httpd
 10.177.0.5 tmux_package=tmux apache2_package=apache2
 10.177.0.6 tmux_package=tmux apache2_package=apache2
-
- 
- 
- 
-

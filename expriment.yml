@@ -1,15 +1,15 @@
 --- 
 
-- hosts: all
-  become: true
+- hosts: all  
+  become: true 
   tasks: 
 
-  - name: Install tmux in both servers
-    package:
+  - name: Install tmux & apache in both servers  
+    package: 
       name:
-        - "{{ tmux_package }}"
-        - "{{ apache2_package }}"
+        - "{{ tmux_package }}"    
+        - "{{ apache2_package }}"  
       state: present
-      update_cache: yes
+      update_cache: yes  
 
   
