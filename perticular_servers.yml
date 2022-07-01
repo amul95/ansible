@@ -17,12 +17,19 @@
 - hosts: ftp_server
   become: true
   tasks:
-  
+
   - name: install mariadb in "Ubuntu"
     when: ansible_distribution =="Ubuntu"
     package:
      name:
         - mariadb-server
-     state: absent
+     state: present
 
+  - name: install mariadb in "CentOS"
+    when: ansible_distribution =="CentOS"
+    package:
+     name:
+        - mariadb
+     state: present
+  
     

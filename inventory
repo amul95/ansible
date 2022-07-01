@@ -4,7 +4,8 @@
 
 [ftp_server]
 10.177.0.5 
+10.177.0.4 
 
 [mailexchange_server]
-10.177.0.4 
+10.177.0.6
 
