@@ -1,15 +1,17 @@
 --- 
-
-- hosts: all  
-  become: true 
+- hosts: web_servers  
   tasks: 
 
-  - name: Install tmux & apache in both servers  
-    package: 
-      name:
-        - "{{ tmux_package }}"    
-        - "{{ apache2_package }}"  
-      state: present
-      update_cache: yes  
+  - name: http & php installed CentOS  
+    when: ansible_distribution == "CentOS"
+    package:
+        name:
+           - tmux
+        state: present
 
-  
+  - name: apache2 & libapache installed Ubuntu
+    when: ansible_distribution == "Ubuntu"
+    package:
+        name:
+           - tmux
+        state: present
