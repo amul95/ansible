@@ -14,7 +14,7 @@
       update_cache: yes
     when: ansible_distribution == "Ubuntu"
 
-- hosts: ftp_server
+- hosts: ftp_server        # aur mariabd sirf ftp server me hi hoga 
   become: true
   tasks:
 
@@ -23,13 +23,32 @@
     package:
      name:
         - mariadb-server
-     state: present
+     state: latest
 
   - name: install mariadb in "CentOS"
     when: ansible_distribution =="CentOS"
     package:
      name:
         - mariadb
-     state: present
+     state: latest
+
+- hosts: db_servers        # abhi mene tmux sirf db_server me install krna chahta hoon toh sirf usme hi hoga 
+  become: true
+  tasks:
+
+  - name: install mariadb in "Ubuntu"
+    when: ansible_distribution =="Ubuntu"
+    package:
+     name:
+        - tmux
+     state: latest
+
+  - name: install mariadb in "CentOS"
+    when: ansible_distribution =="CentOS"
+    package:
+     name:
+        - tmux
+     state: latest
+
   
     
