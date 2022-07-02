@@ -226,7 +226,10 @@ tb hume php ka page dekhenge...
 > Step:2 - Create Playbook for this operation
 	
 	find targeting_servers.yml file in my github repository
-	
 
+ - aap playbook dekhoge toh pata chalega ki mene hosts me jab pehle all hum ikha krte the toh ab mene ftp_server yaa db_server
+ - specify kia hai toh uske baad jo bhi operations honge woh sirf un specific servers ke liye honge like mene agar hosts me 
+ - web_servers use kia aur fir uske niche men koi bhi package install yaa uninstall ka playbook banaya toh woh sirf web_server wale
+ - me ip store kie hai ussi me woh laagu hoga baki woh use nhi hoga
 
 

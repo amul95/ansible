@@ -1,4 +1,4 @@
-[db_servers]
+[web_servers]
 10.177.0.3
 10.177.0.6
 
