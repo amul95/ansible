@@ -2,7 +2,7 @@
 
 - hosts: all
   become: true
-  pre_tasks:
+  pre_tasks: 
 
   - name: install updates (CentOS)
     yum:
@@ -23,16 +23,16 @@
     package:
      name:
         - mariadb-server
-     state: absent
+     state: latest
 
   - name: install mariadb in "CentOS"
     when: ansible_distribution =="CentOS"
     package:
      name:
-        - mariadb
-     state: absent
+        - mariadb  
+     state: latest
 
-- hosts: db_servers   
+- hosts: db_servers  
   become: true
   tasks:
 
@@ -40,15 +40,15 @@
     when: ansible_distribution =="Ubuntu"
     package:
      name:
-        - tmux
-     state: absent
+        - tmux  
+     state: latest
 
   - name: install tmux in "CentOS"
     when: ansible_distribution =="CentOS"
     package:
      name:
         - tmux
-     state: absent
+     state: latest
 
   
     
