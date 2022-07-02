@@ -205,8 +205,28 @@ ye wala likh kar save kr dena hai bas fir hume ansible wale host pr jaakr sidha 
 
 tb hume php ka page dekhenge...
 	
-# Target Specific Servers
-	hello
+# Targeting Different Servers
+ - Humne abhi tak package install kie sare servers me chahe woh ubuntu ho ya cent os par humne jab bhi playbook run ki everytime sb server me woh run hua
+ - ab mere pass total 4 servers hai as u know 2 centOS aur 2 ubuntu pr me playbook run kru aur woh sirf 2 server pr hi work kre aur baaki ke bache 2 server ko pata
+ - pata bhi naa lge toh woh kese hoga aaie chlte hai 
+
+> Step:1 - Update inventory file look like this 
 	
+	[web_servers]	# mee ynha specify kia ki ye ye dono server ke ip web server ke hai 
+	10.177.0.3		
+	10.177.0.6
+
+	[ftp_servers]	# mee ynha specify kia ki ye ye dono server ke ip ftp server ke hai 
+	10.177.0.5 
+	10.177.0.4 
+
+	[db_servers]	# mene ynha specify kia 1 ip woh db_servers ka hai 
+	10.177.0.6
+	
+> Step:2 - Create Playbook for this operation
+	
+	find targeting_servers.yml file in my github repository
+	
+
 
 
