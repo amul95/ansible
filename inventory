@@ -6,6 +6,6 @@
 10.177.0.5 
 10.177.0.4 
 
-[mailexchange_server]
+[smtp-server]
 10.177.0.6
 
