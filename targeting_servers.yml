@@ -5,12 +5,12 @@
   pre_tasks: 
 
   - name: install updates (CentOS)
-    yum:
+    package:
       update_cache: yes
     when: ansible_distribution == "CentOS"
 
   - name: install updates (Ubuntu)
-    apt:
+    package:
       update_cache: yes
     when: ansible_distribution == "Ubuntu"
 
@@ -23,14 +23,14 @@
     package:
      name:
         - mariadb-server
-     state: latest
+     state: absent 
 
   - name: install mariadb in "CentOS"
     when: ansible_distribution =="CentOS"
     package:
      name:
         - mariadb  
-     state: latest
+     state: absent 
 
 - hosts: ftp_servers  
   become: true
@@ -41,14 +41,12 @@
     package:
      name:
         - tmux  
-     state: latest
+     state: absent 
 
   - name: install tmux in "CentOS"
     when: ansible_distribution =="CentOS"
     package:
      name:
         - tmux
-     state: latest
-
-  
+     state: absent   
     
