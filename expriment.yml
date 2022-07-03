@@ -1,17 +1,12 @@
 --- 
-- hosts: web_servers  
+- hosts: ubuntu
+  become: yes
+  become_method: sudo
+
   tasks: 
 
-  - name: http & php installed CentOS  
-    when: ansible_distribution == "CentOS"
-    package:
-        name:
-           - tmux
-        state: present
+  - name: "Updating Ubuntu" 
+  apt:
+  update_cache: true
+  force_apt_get: true
 
-  - name: apache2 & libapache installed Ubuntu
-    when: ansible_distribution == "Ubuntu"
-    package:
-        name:
-           - tmux
-        state: present
