@@ -1,35 +1,38 @@
 ---
 
 - hosts: all
-  become: true
-  pre_tasks: 
+  become: sudo
+  pre_tasks:
+  tags: upadate
 
-  - name: install updates (CentOS)
-    package:
-      update_cache: yes
+  - name: "upgrade all packages"
+    package: name=* state=latest
     when: ansible_distribution == "CentOS"
 
-  - name: install updates (Ubuntu)
-    package:
-      update_cache: yes
-    when: ansible_distribution == "Ubuntu"
+  - name: "Updating Ubuntu"
+    apt:
+      update_cache: true
+      upgrade: dist
+    when: ansible_disribution == "Ubuntu"
 
-- hosts: web_servers 
+- hosts: web_servers
   become: true
   tasks:
 
-  - name: install mariadb in "Ubuntu" 
+  - name: removing tmux in "Ubuntu" 
+    tags: tmux,ubuntu,remove
     when: ansible_distribution =="Ubuntu"
     package:
      name:
-        - mariadb-server
+        - tmux
      state: absent 
 
-  - name: install mariadb in "CentOS"
+  - name: removing tmux in "CentOS"
+    tags: tmux,centos,remove
     when: ansible_distribution =="CentOS"
     package:
      name:
-        - mariadb  
+        - tmux 
      state: absent 
 
 - hosts: ftp_servers  
