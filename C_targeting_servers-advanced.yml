@@ -6,7 +6,7 @@
   tags: upadate
 
   - name: "upgrade all packages"
-    package: name=* state=latest
+    yum: name=* state=latest
     when: ansible_distribution == "CentOS"
 
   - name: "Updating Ubuntu"
