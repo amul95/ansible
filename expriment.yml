@@ -7,6 +7,7 @@
 
   - name: "Updating Ubuntu" 
   apt:
-  update_cache: true
-  force_apt_get: true
+    update_cache: true
+    cache_valid_time: 3600
+    force_apt_get: true
 
