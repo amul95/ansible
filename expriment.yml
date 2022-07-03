@@ -1,9 +1,7 @@
 --- 
-- hosts: Ubuntu
+- hosts: centOS
 
   tasks: 
 
-  - name: "Updating Ubuntu" 
-    apt:
-      update_cache: true
-      upgrade: dist
+  - name: "upgrade all packages"
+    yum: name=* state=latest

@@ -1,0 +1,9 @@
+--- 
+- hosts: Ubuntu
+
+  tasks: 
+
+  - name: "Updating Ubuntu" 
+    apt:
+      update_cache: true
+      upgrade: dist
