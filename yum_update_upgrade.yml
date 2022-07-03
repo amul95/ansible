@@ -5,3 +5,5 @@
 
   - name: "upgrade all packages"
     yum: name=* state=latest
+      update_cache: yes
+
