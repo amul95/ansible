@@ -1,74 +1,80 @@
 ---
 
 - hosts: all
+  tags: always # Only for update & upgrade all server
   become: true
   pre_tasks:
 
-  - name: upgrade all packages
-    tags: always
-    yum: 
-      update_cache: yes
+# For update yum cache 
+
+  - name: yum update  - ( CentOS )
+    when: ansible_distribution == "CentOS"
+    package: name=* state=latest
+    # name=* means all packages upgrade aur latest version
+
+  - name: yum upgrade
+    yum:
+     update_cache: yes
     when: ansible_distribution == "CentOS"
 
-  - name: Updating Ubuntu
-    tags: always
+# For update apt cache   
+
+  - name: apt-get update & upgrade - ( Ubuntu )
     apt:
-      update_cache: yes
+      update_cache: true
+      upgrade: dist # dist used for all packages updgrade in ubuntu
     when: ansible_distribution == "Ubuntu"
 
 - hosts: web_servers
+  tags: tmux
   become: true
   tasks:
 
-  - name: removing tmux in "Ubuntu" 
-    tags: tmux,ubuntu,remove
+  - name: TMUX intalled in "Ubuntu" 
     when: ansible_distribution =="Ubuntu"
     package:
      name:
         - tmux
-     state: absent 
+     state: latest 
 
   - name: removing tmux in "CentOS"
-    tags: tmux,centos,remove
     when: ansible_distribution =="CentOS"
     package:
      name:
         - tmux 
-     state: absent 
+     state: latest 
 
-- hosts: ftp_servers  
+- hosts: ftp_servers
+  tags: vim  
   become: true
   tasks:
 
-  - name: install tmux in Ubuntu
-    tags: tmux,install,ubuntu
+  - name: VIM Installed in Ubuntu
     when: ansible_distribution == "Ubuntu"
     package:
      name:
-        - tmux  
+        - vim  
      state: latest 
 
-  - name: install tmux in CentOS
-    tags: tmux,install,centos
+  - name: VIM Installed in CentOS
     when: ansible_distribution == "CentOS"
     package:
      name:
-        - tmux
+        - vim-enhanced 
      state: latest   
 
 - hosts: db_servers
+  tags: httpd,apache2
   become: true
   tasks:
 
-  - name: install apache in Centos
-    tags: httpd,apache2
+  - name: Apache Installed in CentOS
     when: ansible_distribution ==  "CentOS"    
     package:
      name: 
         - httpd
      state: latest
-  - name: install apache in Ubuntu
-    tags: apache2,httpd
+  - name: Apache Installed in Ubuntu
     when: ansible_distribution == "Ubuntu"
     package:
      name:
@@ -80,14 +86,14 @@
   become: true
   tasks:
 
-  - name: install ntp in centOS
+  - name: NTP Installed in CentOS
     when: ansible_distribution == "CentOS"
     package:
      name:
         - ntp
      state: latest
 
-  - name: install ntp in ubuntu
+  - name: NTP Installed in Ubuntu
     when: ansible_distribution == "Ubuntu"
     package: 
      name: 
