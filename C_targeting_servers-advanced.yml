@@ -1,19 +1,20 @@
 ---
 
 - hosts: all
-  become: sudo
+  become: true
   pre_tasks:
-  tags: upadate
 
-  - name: "upgrade all packages"
-    yum: name=* state=latest
+  - name: upgrade all packages
+    tags: always
+    yum: 
+      update_cache: yes
     when: ansible_distribution == "CentOS"
 
-  - name: "Updating Ubuntu"
+  - name: Updating Ubuntu
+    tags: always
     apt:
-      update_cache: true
-      upgrade: dist
-    when: ansible_disribution == "Ubuntu"
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
 
 - hosts: web_servers
   become: true
@@ -39,17 +40,58 @@
   become: true
   tasks:
 
-  - name: install tmux in "Ubuntu"
-    when: ansible_distribution =="Ubuntu"
+  - name: install tmux in Ubuntu
+    tags: tmux,install,ubuntu
+    when: ansible_distribution == "Ubuntu"
     package:
      name:
         - tmux  
-     state: absent 
+     state: latest 
 
-  - name: install tmux in "CentOS"
-    when: ansible_distribution =="CentOS"
+  - name: install tmux in CentOS
+    tags: tmux,install,centos
+    when: ansible_distribution == "CentOS"
     package:
      name:
         - tmux
-     state: absent   
-    
+     state: latest   
+
+- hosts: db_servers
+  become: true
+  tasks:
+
+  - name: install apache in Centos
+    tags: httpd,apache2
+    when: ansible_distribution ==  "CentOS"    
+    package:
+     name: 
+        - httpd
+     state: latest
+  - name: install apache in Ubuntu
+    tags: apache2,httpd
+    when: ansible_distribution == "Ubuntu"
+    package:
+     name:
+        - apache2 
+     state: latest
+
+- hosts: time_servers
+  tags: ntp
+  become: true
+  tasks:
+
+  - name: install ntp in centOS
+    when: ansible_distribution == "CentOS"
+    package:
+     name:
+        - ntp
+     state: latest
+
+  - name: install ntp in ubuntu
+    when: ansible_distribution == "Ubuntu"
+    package: 
+     name: 
+        - ntp
+     state: latest
+
+      
