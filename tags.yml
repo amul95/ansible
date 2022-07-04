@@ -1,0 +1,103 @@
+---
+
+- hosts: all
+  tags: always # Only for update & upgrade all server
+  become: true
+  pre_tasks:
+
+# For update yum cache 
+
+  - name: yum update  - ( CentOS )
+    when: ansible_distribution == "CentOS"
+    package: name=* state=latest
+    # name=* means all packages upgrade aur latest version
+
+  - name: yum upgrade
+    yum:
+     update_cache: yes
+    when: ansible_distribution == "CentOS"
+
+# For update apt cache   
+
+  - name: apt-get update & upgrade - ( Ubuntu )
+    apt:
+      update_cache: true
+      upgrade: dist # dist used for all packages updgrade in ubuntu
+    when: ansible_distribution == "Ubuntu"
+
+- hosts: web_servers
+  tags: tmux
+  become: true
+  tasks:
+
+  - name: TMUX intalled in "Ubuntu" 
+    when: ansible_distribution =="Ubuntu"
+    package:
+     name:
+        - tmux
+     state: latest 
+
+  - name: removing tmux in "CentOS"
+    when: ansible_distribution =="CentOS"
+    package:
+     name:
+        - tmux 
+     state: latest 
+
+- hosts: ftp_servers
+  tags: vim  
+  become: true
+  tasks:
+
+  - name: VIM Installed in Ubuntu
+    when: ansible_distribution == "Ubuntu"
+    package:
+     name:
+        - vim  
+     state: latest 
+
+  - name: VIM Installed in CentOS
+    when: ansible_distribution == "CentOS"
+    package:
+     name:
+        - vim-enhanced 
+     state: latest   
+
+- hosts: db_servers
+  tags: httpd,apache2
+  become: true
+  tasks:
+
+  - name: Apache Installed in CentOS
+    when: ansible_distribution ==  "CentOS"    
+    package:
+     name: 
+        - httpd
+     state: latest
+  - name: Apache Installed in Ubuntu
+    when: ansible_distribution == "Ubuntu"
+    package:
+     name:
+        - apache2 
+     state: latest
+
+- hosts: time_servers
+  tags: ntp
+  become: true
+  tasks:
+
+  - name: NTP Installed in CentOS
+    when: ansible_distribution == "CentOS"
+    package:
+     name:
+        - ntp
+     state: latest
+
+  - name: NTP Installed in Ubuntu
+    when: ansible_distribution == "Ubuntu"
+    package: 
+     name: 
+        - ntp
+     state: latest
+
+      
