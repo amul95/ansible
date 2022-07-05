@@ -1,0 +1,13 @@
+---
+
+- hosts: web_servers
+  tags: copy
+  become: true
+  tasks:
+
+ 
+  - name: copy file from home to centos_server_A
+    copy: 
+      src: /home/lavvi
+      dest: /home/amul
+    
