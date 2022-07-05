@@ -1,0 +1,18 @@
+--- 
+
+- hosts: all
+  become: yes
+  tasks: 
+
+  - name: install TMUX package
+    yum:
+      name: tmux  
+      state: latest
+    when: ansible_distribution == "CentOS"
+    
+  - name: install TMUX package
+    apt:
+      name: tmux
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
