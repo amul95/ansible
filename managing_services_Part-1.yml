@@ -1,18 +1,36 @@
 --- 
 
-- hosts: all
-  become: yes
+- hosts: db_servers
+  become: true
   tasks: 
 
-  - name: install TMUX package
-    yum:
-      name: tmux  
+  - name: install httpd package
+    package:
+      name: httpd 
       state: latest
     when: ansible_distribution == "CentOS"
     
-  - name: install TMUX package
-    apt:
-      name: tmux
-      state: latest
-    when: ansible_distribution == "Ubuntu"
+  - name: start httpd service 
+    tags: enable
+    service:
+      name: httpd
+      state: started   # For systemctl start httpd
+      enabled: no     # For systemctl enable httpd
+    when: ansible_distribution == "CentOS"
 
+  - name: Change Email_Address for Admin
+    tags: email
+    lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^ServerAdmin'
+      line: ServerAdmin ravalamul@gmail.com  
+    when: ansible_distribution == "CentOS"
+
+  - name: httpd service restarted 
+    tags: email
+    service: 
+      name: httpd
+      state: stopped
+    when: ansible_distribution == "CentOS"
+
+   
