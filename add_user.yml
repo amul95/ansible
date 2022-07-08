@@ -1,0 +1,25 @@
+---
+
+- hosts: all
+  become: yes
+  tasks:
+  - name: Adding user='pragnesh' in all host_servers
+    user:
+      name: pragnesh
+      group: root    #not necessary
+
+  - name: Adding ssh key for pragnesh
+    authorized_key:
+      user: pragnesh
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJBXHBbiTCGdnt4FVR39RRsSyI9YYUlbMFqcx58Litkj Ansible "
+
+  - name: Lets user pragnesh adding in sudoers.d 
+    copy:
+      src: sudoer_pragnesh
+      dest: /etc/sudoers.d/pragnesh
+      owner: root
+      group: root
+      mode: 0440
+      
+      
+ 
