@@ -14,7 +14,7 @@
 
      tags: always
 
-     yum:
+     package:
 
        update_cache: yes
 
@@ -28,7 +28,7 @@
 
      tags: always
 
-     apt:
+     package:
 
        update_cache: yes
 
