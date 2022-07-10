@@ -4,6 +4,7 @@
 
    package:
 
-     name: samba
-
+     name: 
+       - "{{samba_package_name}}"
+       - "{{vim_package_name}}"
      state: latest
