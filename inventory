@@ -1,10 +1,9 @@
-[web_servers]
+[workstations]
 10.177.0.3
-[db_servers]
+[web_servers]
 10.177.0.4
+[db_servers]
+10.177.0.5
 [ftp_servers]
-10.177.0.5 
-[time_servers]
 10.177.0.6 
-
 
