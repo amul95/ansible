@@ -321,6 +321,21 @@ Ab me mention karunga " -c " usse hume us perticular keyword kitni line me aata 
 	┌─[✗]─[amul@Hacker]─[~/Desktop]
 	└──╼ $grep -c Movie characters.txt 
 	4
+	
+Ab me mention karunga "-i" usse yhi hoga maan lo me jo search kr rha hoon woh mne small me likha but same woh chiz agar capital me hui toh agar -i use nhi krunga toh woh miss ho jayega isliye me chahta hoon ki muje woh dikhe 
+
+	
+	-- mene sirf akshay likha toh kuch bhi find nhi hua balki ander file            me akshay kumar tha 
+	
+	┌─[amul@Hacker]─[~/Desktop]
+	└──╼ $grep akshay characters.txt 
+	
+	Par jese hi mene -i use kia toh usne toh dekho hume output mil gya
+	
+	┌─[amul@Hacker]─[~/Desktop]
+	└──╼ $grep -i akshay characters.txt 
+	Name:Akshay Kumar  Occupation:Bollywood Actor   Movie:Sooryavanshi
+
 
 
 
