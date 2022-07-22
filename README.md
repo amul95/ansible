@@ -236,5 +236,95 @@ tb hume php ka page dekhenge...
  
  	https://notebook.zohopublic.in/public/notes/inx8106e505f6b4e44dc6bdb9b12292f28548
 
+# Learning grep command
+
+	cat /etc/ssh/sshd_config | wc -l  
+
+-- text file me total kitni lines hai coding ki hui woh dikhayega yaa kitni lines me kuch na kuch likha hua hai
+
+	cat /etc/ssh/sshd_config | grep Permit
+
+-- is txt file me jo kahin Permit likha hua hoga woh saara kuch output me aayega
+
+
+	 cat /etc/ssh/sshd_config | grep Port 
+-- is txt file me jo kahin Port likha hua hoga woh saara kuch output me aayega
+
+
+	grep Port /etc/ssh/sshd_config 
+
+-- isse bhi same output milega par aapko agar aese yaad rhe toh aese hi sahi aap likh skte ho 
+
+
+Example : Ab mene ek text file create ki hai jisme kuch aesa likha hai mene
+          taki aur asani ho grep command ko smjne me toh shuru krte hai.
+	  
+	┌─[amul@Hacker]─[~/Desktop]
+	└──╼ $cat characters.txt 
+
+	Name:Akashy Kumar  Occupation:Bollywood Actor   Movie:Sooryavanshi
+	Name:Batman        Occupation:Hollywood Actor   Movie:Dark Knight
+	Name:Tony Stark    Occupation:Hollywood Actor   Movie:Iron Man
+	Name:Yash          Occupation:South Actor       Movie:Kgf
+	Name:Donatello     Occupation:Court Mage        Species:Mutant Turtle
+	Name:Kefka         Occupation:Cute Pink Puff    Species:Human
+	Name:Kirby         Occupation:Ninja             Species:Kirby
+	Name:Leonardo      Occupation:Ninja             Species:Mutant Turtle
+	Name:Michelangelo  Occupation:Ninja             Species:Mutant Turtle
+	Name:Raphael       Occupation:Super Villian     Species:Mutant Turtle
+	Name:Riddler       Occupation:Bounty Hunger     Species:Human
+	Name:Samus         Occupation:Hero              Species:Human
+	Name:Terra         Occupation:Hero              Species:Esper
+
+Grep command ko kese hum advanced tarike se use kr skte hai dekhte hai...
+
+	┌─[amul@Hacker]─[~/Desktop]
+   	└──╼ $grep Movie characters.txt 
+	
+	Name:Akashy Kumar  Occupation:Bollywood Actor   Movie:Sooryavanshi
+	Name:Batman        Occupation:Hollywood Actor   Movie:Dark Knight
+	Name:Tony Stark    Occupation:Hollywood Actor   Movie:Iron Man
+	Name:Yash          Occupation:South Actor       Movie:Kgf
+	
+	-- kyun ki isme dekho aap Movie likha hua isliye woh sari lines 
+	   aa gyi jo bhi movie likha hua hai woh 
+
+Mene " -v " mention karunga toh wo us keyword ke inculde na karke baaki saara 
+kuch output dega...
+
+	┌─[amul@Hacker]─[~/Desktop]
+	└──╼ $grep -v Movie characters.txt 
+	
+	Name:Donatello     Occupation:Court Mage        Species:Mutant Turtle
+	Name:Kefka         Occupation:Cute Pink Puff    Species:Human
+	Name:Kirby         Occupation:Ninja             Species:Kirby
+	Name:Leonardo      Occupation:Ninja             Species:Mutant Turtle
+	Name:Michelangelo  Occupation:Ninja             Species:Mutant Turtle
+	Name:Raphael       Occupation:Super Villian     Species:Mutant Turtle
+	Name:Riddler       Occupation:Bounty Hunger     Species:Human
+	Name:Samus         Occupation:Hero              Species:Human
+	Name:Terra         Occupation:Hero              Species:Esper
+
+	-- kyun ki humne -v mention kia hai toh Movie word wali jo lines thi 		usse chodkr saari lines hume show hogi aap dekh skt ho Movie word 	     aur woh puri lines aapko nhi show ho rhi hogi output me 
+
+Mene " -n " mention kia n means number hum output me line numbers bhi show honge...as u see below 
+
+	┌─[amul@Hacker]─[~/Desktop]
+	└──╼ $grep -n Movie characters.txt 
+	3:Name:Akashy Kumar  Occupation:Bollywood Actor   Movie:Sooryavanshi
+	4:Name:Batman        Occupation:Hollywood Actor   Movie:Dark Knight
+	5:Name:Tony Stark    Occupation:Hollywood Actor   Movie:Iron Man
+	6:Name:Yash          Occupation:South Actor       Movie:Kgf
+
+Ab me mention karunga " -c " usse hume us perticular keyword kitni line me aata hai uska COUNT milega...
+
+	┌─[✗]─[amul@Hacker]─[~/Desktop]
+	└──╼ $grep -c Movie characters.txt 
+	4
+
+
+
+
+
 
 
