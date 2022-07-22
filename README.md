@@ -337,6 +337,8 @@ Ab me mention karunga "-i" usse yhi hoga maan lo me jo search kr rha hoon woh mn
 	Name:Akshay Kumar  Occupation:Bollywood Actor   Movie:Sooryavanshi
 
 
+#  The echo command
+
 
 
 
