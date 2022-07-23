@@ -369,6 +369,26 @@ Ab me mention karunga "-i" usse yhi hoga maan lo me jo search kr rha hoon woh mn
 	
 # Bash History 
 
+-- hm history sirf ye dekhne ke liye krte hai ki humne recent me kyaa kya command dia hai woh dekhne ke liye aur haan ap jab history command use kroge toh aapko pata chalgea ki command kon kon se hai aur command ke aage line numbers diye honge me yna line numbers isliye define kr rha hoon taaki apko same command wapis dena hai toh aap copy paste kr lo history me se yaa fir line number 35 hai toh aap " !35 " likh denge aur enter kr loge toh bhi woh hi command exceute hoga jo us line number pr hai...
+
+# Swap Memory 
+
+--> Unused RAM is Wasted RAM 
+
+What is SWAP-Memory : thoda tricky hai but hum aasani se smj lenge ki ye 
+swap hai kyaa chlo maan lo mere laptop me 4Gb ram installed hai ab me mere 
+laptop me kuch bhi kaam krunga toh ram consum hoga woh apne cache me sb store
+krega pr mera laptop kaa kaam itna badh jaaye ki muje 4 gb ram bhi kum padegi 
+ab maan lo meri ram ki kuch capacity hai uske above me apan sb kaam krunga 
+process run krunga us pr load padega ek time aaywga ki ram out of controll ho jayeegi aur sara laptop mera crash yaa freezze ab jab tm me sb close krunga uske baad ram free hoga then sahi se work krega pr ye toh mera single laptoop hai but server me aesa hua toh kyaa karenge sb bandh company thode smy ke liye ruk jaayegi isliye swap ne janm lia ki jab humne jo install ki hai ram 4 gb yaa 8 gb jo size ki agar woh full ho jati hai toh uska ek emergenccy option hi swap memmory jo humare hard disk ke storage ke through hum use krte hai pr jo perfomance hume ram se mileta ha cache memory se thik wesa hume swap memory se nhi milega isliye woh end moment pr hume bacha le isliye hume create krke rkh dena hota hai
+
+
+	sudo nano /etc/sysctl.conf
+	# ynha last me jao wnha vm.swappiness lika hoga uske samne aap
+	   1-100 tk digit daal do 4GB ram hai toh mene 10 dala ha uska mtlb 
+	   ye hua ki jab mer 4gb ram 80% use hogi tbb woh swap kr legi meri              storage wali ram ko 
+
+
 	
 	
 
