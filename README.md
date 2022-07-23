@@ -339,7 +339,40 @@ Ab me mention karunga "-i" usse yhi hoga maan lo me jo search kr rha hoon woh mn
 
 #  The echo command
 
+	
+	┌─[amul@Hacker]─[~]
+	└──╼ $echo "Amul Raval"
+	Amul Raval
+	# jo hum likhenge woh print hoga
+	
+	┌─[amul@Hacker]─[~]
+	└──╼ $echo -e "Amul Raval\c"
+	# "-c" aur uske saath "\c" use krunga
+	
+	Amul Raval┌─[amul@Hacker]─[~]
+	# upr dekh skte ho aesa ho jayega bash style humara
+	
+	┌─[amul@Hacker]─[~]
+	└──╼ $echo -e "Amul \nRaval"
+	Amul 
+	Raval
+	# me agar "\n" use krunga toh next line me bhi add hoga
+	
+	┌─[amul@Hacker]─[~]
+	└──╼ $abc="bhai bhai che"
+	# variable bana do aur usme store kr do jo print karvana hai
+	
+	┌─[amul@Hacker]─[~]
+	└──╼ $echo $abc
+	bhai bhai che
+	# ab echo use kro "$" symbol use krke variable name likho
+	
+# Bash History 
 
+	
+	
+
+	
 
 
 
