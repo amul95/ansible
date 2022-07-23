@@ -389,7 +389,69 @@ process run krunga us pr load padega ek time aaywga ki ram out of controll ho ja
 	   ye hua ki jab mer 4gb ram 80% use hogi tbb woh swap kr legi meri              storage wali ram ko 
 
 
+# WGET
+
+-- me online se koi bhi software ya file download krta hoon par muje agar teminal se krna hai toh me wget command ka use krke kar skta hoon jese ki men wordpres ki site pr gya wnha software donwload krna tha muje toh me agar sidha woh link par copy krunga jisse woh download ho jayega par me us link par right click krunga toh toh woh download wali link copy kr loonga aur fir usse terminal se wget ke aage use kr loonga toh woh download ho jayega jese mere click krne se hota ab wget me aur bhi advanced hai woh ye hai ki me download ke saath saath pehle se name change kar doon fir woh mere laptop ussi name se download hoga ap niche dekh skte ho
+
+Using -o command for rename downloaded file 
+
+	┌──[amul@Hacker]─[~]
+	└──╼ $ wget -o wp.zip https://wordpress.org/latest.zip
+	┌─[amul@Hacker]─[~]
+	└──╼ $ls
+	ansible   Documents       latest.zip  Pictures  swap.txt   Test
+	code.txt  Downloads       log.txt     Public    Sync       Videos
+	Desktop   gnome-terminal  Music       snap      Templates  wp.zip
 	
+Using -P command for path 
+--muje path bhi dena ho toh me de skta hoon ki muje kaha file download krni hai kis folder me 
+
+	┌─[amul@Hacker]─[~]
+	└──╼ $ wget -P /home/amul/Downloads https://wordpress.org/latest.zip
+	
+	--2022-07-23 18:19:38--  https://wordpress.org/latest.zip
+	Resolving wordpress.org (wordpress.org)... 198.143.164.252
+	Connecting to wordpress.org (wordpress.org)|198.143.164.252|:443... 	    connected.
+	HTTP request sent, awaiting response... 200 OK
+	Length: 22771633 (22M) [application/zip]
+	Saving to: ‘/home/amul/Downloads/latest.zip’
+
+	latest.zip           100%[=====================>]  21.72M  2.95MB/s    	 	in 9.9s    
+
+	2022-07-23 18:19:49 (2.20 MB/s) - ‘/home/amul/Downloads/latest.zip’ 		saved [22771633/22771633]
+
+	┌─[amul@Hacker]─[~]
+	└──╼ $cd /home/amul/Downloads/
+	┌─[amul@Hacker]─[~/Downloads]
+	└──╼ $ls
+	'acknowledgementSlip (1).pdf'
+	'acknowledgementSlip (2).pdf'
+	'acknowledgementSlip (3).pdf'
+	'acknowledgementSlip (4).pdf'
+	'acknowledgementSlip (5).pdf'
+	 acknowledgementSlip.pdf
+	'Ahmedabad to Mumbai.pdf'
+	 Dracula.zip
+	 EAadhaar_0000001052642120220710115839_17072022133453.pdf
+	 EAadhaar_0000005497740920220718073552_2207202217246.pdf
+	 google-chrome.tar.gz
+	 gtk-master.zip
+	
+	 invoice-8a129cc381fc10a501820c263e4e7032.pdf
+	
+	 latest.zip
+	
+	'Mumbai to Ahmedabad.pdf'
+	'parrot terminal theme'
+	 wallpaper-master
+	 wallpaper-master.zip
+	'WhatsApp Image 2022-07-17 at 1.46.23 PM.jpeg'
+	
+-- Dekha aapne mene path dia ki user amul ke Download folder me ho aur fir wnha check kia toh " latest.zip " kar ke aapko wnha dikh rha hoga 
+
+
+
+
 	
 
 	
